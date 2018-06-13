@@ -1,6 +1,6 @@
 #!/bin/bash
 #-
-#-                          :-) Testing sd3e-cli (-:
+#-                          :-) Testing sd2e-cli (-:
 #-
 #- Testing nvironment for the development of github.com/sd2e/sd2e-cli fork on
 #- github.com/alejandrox1/sd2e-cli.
