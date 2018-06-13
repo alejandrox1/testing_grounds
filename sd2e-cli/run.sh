@@ -8,7 +8,7 @@
 ##
 ## Usage:
 ##
-##      ./skeleton.sh [-v|-h] [-i|--input INPUT_FILE]
+##      ./run.sh [-v|-h] [-i|--input INPUT_FILE]
 ##
 ##      -v|--version print to stdout any information related to this script.
 ##
