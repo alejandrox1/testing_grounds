@@ -44,6 +44,7 @@ while [[ "$#" > 0 ]]; do
             ;;
         -b|--branch)
             SD2E_BRANCH="v1.0.7_alejandrox1"
+            ;;
         *)
             >&2 echo "Unknown command-line option: '${arg}'."
             exit 1
