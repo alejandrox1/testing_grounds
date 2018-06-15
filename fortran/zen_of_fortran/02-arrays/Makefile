@@ -10,4 +10,4 @@ simple: simple_calc.f90
 
 clean:
 	rm -f arrays
-	rm -f *.mod
+	rm -f simple
