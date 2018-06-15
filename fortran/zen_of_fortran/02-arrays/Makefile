@@ -1,8 +1,11 @@
 FC=gfortran
 
-.PHONY: arrays clean
+.PHONY: arrays simple clean
 
 arrays: arrays.f90
+	$(FC) -o $@ $^
+
+simple: simple_calc.f90
 	$(FC) -o $@ $^
 
 clean:
