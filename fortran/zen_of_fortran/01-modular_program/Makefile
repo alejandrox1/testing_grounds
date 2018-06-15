@@ -7,3 +7,4 @@ modular: modular.f90
 
 clean:
 	rm -f modular
+	rm -f *.mod
