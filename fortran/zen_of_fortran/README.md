@@ -2,6 +2,9 @@
 
 1. Fortran Basics
    1. The Basics
-      * [hello world example](00-hello_world)
+      * [Hello world example](00-hello_world)
 
       * [Modular programming](01-modular_program)
+
+   2. Intrinsic Type
+      * [Arrays](02-arrays)
