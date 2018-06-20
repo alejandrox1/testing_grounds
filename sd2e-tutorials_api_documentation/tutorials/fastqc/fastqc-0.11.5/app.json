@@ -1,4 +1,38 @@
 {
-  "name": "hello-container-test-1507155868",
-  "appId": "hello-container-0.1.0"
+    "name": "fastqc-jochoa",
+    "version": "0.11.5",
+    "executionSystem": "hpc-tacc-maverick",
+    "executionType": "HPC",
+    "parallelism": "SERIAL",
+    "deploymentPath": "/sd2e-apps/fastqc-0.11.5",
+    "deploymentSystem": "data-sd2e-projects-users",
+    "defaultProcessorsPerNode": 1,
+    "defaultNodeCount": 1,
+    "defaultQueue": "normal",
+    "label": "FastQC",
+    "modules": ["load tacc-singularity/2.3.1"],
+    "shortDescription": "A quality control application for FastQ files",
+    "templatePath": "runner-template.sh",
+    "testPath": "tester.sh",
+    "inputs": [
+        {
+            "id": "fastq",
+            "value": {
+                "default": "",
+                "visible": true,
+                "required": true
+            },
+            "details": {
+                "label": "FASTQ sequence file",
+                "showArgument": false
+            },
+            "semantics": {
+                "minCardinality": 1,
+                "maxCardinality": 1,
+                "ontology": [ "http://edamontology.org/format_1930" ]
+            }
+        }
+    ],
+    "parameters": [],
+    "outputs": []
 }
