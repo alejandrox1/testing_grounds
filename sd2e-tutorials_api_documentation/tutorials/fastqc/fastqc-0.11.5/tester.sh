@@ -1,13 +1,17 @@
 #!/usr/bin/env bash
 
-CONTAINER_IMAGE="index.docker.io/sd2e/hello-container:0.1.0"
+CONTAINER_IMAGE="index.docker.io/alejandrox1/fastqc:0.11.5"
+
+fastqc_sample_input="/example/SP1.fq"
+container_mount="-v ${PWD}/../example:/example:rw"
+
 
 . _util/container_exec.sh
 
-COMMAND='bash'
-PARAMS='/opt/scripts/hello.sh WORLD'
+COMMAND="fastqc"
+PARAMS="${fastqc_sample_input}"
 
-DEBUG=1 container_exec ${CONTAINER_IMAGE} ${COMMAND} ${PARAMS}
+DEBUG=1 container_exec ${container_mount} ${CONTAINER_IMAGE} ${COMMAND} ${PARAMS}
 
 ######################
 #  FUNCTIONAL TESTS  #
