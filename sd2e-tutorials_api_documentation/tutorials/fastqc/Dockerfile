@@ -12,4 +12,6 @@ RUN apt-get update -y && apt-get install -y zip default-jre && \
     rm fastqc_v0.11.5.zip && \
     chmod +x /opt/FastQC/fastqc
 
+ENV PATH "$PATH:/opt/FastQC/"
+
 CMD ["bash"]
