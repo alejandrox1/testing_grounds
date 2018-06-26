@@ -1,3 +1,8 @@
+#    SD2E-CLI
+#
+# Install sd2e-cli from source. This image specification file allows you to
+# specify what branch to build off of.
+#
 FROM ubuntu:18.04
 MAINTAINER alejandrox1
 
