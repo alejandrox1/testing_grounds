@@ -1,3 +1,7 @@
+#    SD2E-CLI
+#
+# Install sd2e-cli ci release and run it as an unprivileged user.
+#
 FROM ubuntu:18.04
 MAINTAINER alejandrox1
 
