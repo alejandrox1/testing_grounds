@@ -1,11 +1,11 @@
 {
     "name": "fastqc-jochoa",
     "version": "0.11.5",
-    "executionSystem": "hpc-tacc-maverick",
+    "executionSystem": "tacc-stampede2-jochoa",
     "executionType": "HPC",
     "parallelism": "SERIAL",
     "deploymentPath": "/sd2e-apps/fastqc-0.11.5",
-    "deploymentSystem": "data-sd2e-projects-users",
+    "deploymentSystem": "tacc-globalfs-jochoa",
     "defaultProcessorsPerNode": 1,
     "defaultNodeCount": 1,
     "defaultQueue": "normal",
