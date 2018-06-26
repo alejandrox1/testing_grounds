@@ -11,8 +11,11 @@ RUN apt-get update -y && apt-get install -y curl  && \
     #rm -rf /var/lib/apt/lists/* && \
     #rm -rf /src/.*deb
 
-WORKDIR /work
+RUN useradd -ms /bin/bash docker                                                
+USER docker
+
+WORKDIR /home/docker
 RUN curl -L ${INSTALL_SCRIPT} | sh
-WORKDIR sd2e-cli
+
 
 CMD ["/bin/bash"]
