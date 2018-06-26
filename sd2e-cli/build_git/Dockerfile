@@ -15,8 +15,12 @@ RUN apt-get update -y && apt-get install -y git build-essential  && \
     #rm -rf /var/lib/apt/lists/* && \
     #rm -rf /src/.*deb
 
-WORKDIR /work
+RUN useradd -ms /bin/bash docker
+USER docker
+
+WORKDIR /home/docker
 RUN git clone -b ${BRANCH} https://github.com/alejandrox1/sd2e-cli
-WORKDIR sd2e-cli
+
+ENV PATH /home/docker/sd2e-cli/bin:$PATH
 
 CMD ["/bin/bash"]
