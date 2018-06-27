@@ -22,7 +22,7 @@
 set -e
 set -o pipefail
 export blue="\e[1;34m"                                                         
-export green="\e[32m"                                                           
+export green="\e[92;1m"                                                           
 export red="\e[1;31m"
 export reset="\e[0m"
 
@@ -48,7 +48,7 @@ while [[ "$#" > 0 ]]; do
             exit 0
             ;;
         -b|--build)
-            BUILD_IMAG="TRUE"
+            BUILD_IMAGE="true"
             ;;
         --get-tar)
             GET_TAR="true"
