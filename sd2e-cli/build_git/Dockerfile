@@ -9,6 +9,8 @@ MAINTAINER alejandrox1
 ARG UID=1000
 ARG USER=docker
 ARG REPO=https://github.com/alejandrox1/sd2e-cli
+ARG REPO_LOC=sd2e-cli
+ARG UPSTREAM=https://github.com/SD2E/sd2e-cli
 
 RUN apt-get update -y && apt-get install -y git build-essential \
     vim bash-completion curl sudo
@@ -31,9 +33,11 @@ RUN curl -L https://raw.githubusercontent.com/alejandrox1/dev_env/master/local-s
     echo "source ~/.bash_prompt" >> ~/.bashrc
 
 # Get your repo.
-RUN git clone --recurse-submodules $REPO
+RUN git clone --recurse-submodules $REPO $REPO_LOC && \
+    cd $REPO_LOC && \
+    git remote add upstream $UPSTREAM
 
 # COntainer specific commands.
-ENV PATH /home/$USER/sd2e-cli/bin:$PATH
+ENV PATH /home/$USER/$REPO_LOC/bin:$PATH
 
 CMD ["/bin/bash"]
