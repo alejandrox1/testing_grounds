@@ -61,8 +61,10 @@ fi
 
 
 echo -e "${red}SD2E-CLI development starting...${reset}"
-docker build --force-rm -t sd2e-cli-dev . && \
+docker build --force-rm \
+    --build-arg UID=$UID --build-arg USER=$USER \
+    -t sd2e-cli-dev . && \
     docker run \
-    -v ~/.gitconfig:/home/docker/.gitconfig:ro \
-    -v ~/.git-credentials:/home/docker/.git-credentials:ro \
-    -it sd2e-cli-dev
+    -v ~/.gitconfig:/home/$USER/.gitconfig \
+    -v ~/.git-credentials:/home/$USER/.git-credentials \
+    --rm -it sd2e-cli-dev
