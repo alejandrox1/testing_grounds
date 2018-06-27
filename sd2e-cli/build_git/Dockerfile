@@ -6,6 +6,9 @@
 FROM ubuntu:18.04
 MAINTAINER alejandrox1
 
+ARG UID=1000
+ARG USER=docker
+
 RUN apt-get update -y && apt-get install -y git build-essential  && \
     apt-get install -y vim
     # Commenting these out in order to have the system updated - may need to
@@ -13,14 +16,14 @@ RUN apt-get update -y && apt-get install -y git build-essential  && \
     #rm -rf /var/lib/apt/lists/* && \
     #rm -rf /src/.*deb
 
-RUN useradd -ms /bin/bash docker
-USER docker
+RUN useradd -u $UID -ms /bin/bash $USER
+USER $USER
 
-WORKDIR /home/docker
+WORKDIR /home/$USER
 RUN git clone --recurse-submodules https://github.com/alejandrox1/sd2e-cli
 
-ENV PATH /home/docker/sd2e-cli/bin:$PATH
+ENV PATH /home/$USER/sd2e-cli/bin:$PATH
 
-WORKDIR /home/docker/sd2e-cli
+WORKDIR /home/$USER/sd2e-cli
 
 CMD ["/bin/bash"]
