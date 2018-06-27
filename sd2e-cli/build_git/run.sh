@@ -88,4 +88,4 @@ docker run \
     -v ~/.git-credentials:/home/$USER/.git-credentials:rw \
     -v $PWD/sd2e_files:/home/$USER/sd2e_files \
     -w /home/$USER/$(basename $REPO) \
-    --rm -it $CONTAINER
+    -it $CONTAINER
