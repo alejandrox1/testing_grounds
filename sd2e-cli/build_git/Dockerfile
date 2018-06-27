@@ -8,9 +8,10 @@ MAINTAINER alejandrox1
 
 ARG UID=1000
 ARG USER=docker
+ARG REPO=https://github.com/alejandrox1/sd2e-cli
 
-RUN apt-get update -y && apt-get install -y git build-essential  && \
-    apt-get install -y vim
+RUN apt-get update -y && apt-get install -y git build-essential \
+    vim bash-completion
     # Commenting these out in order to have the system updated - may need to
     # install something during an interactive run
     #rm -rf /var/lib/apt/lists/* && \
@@ -20,7 +21,7 @@ RUN useradd -u $UID -ms /bin/bash $USER
 USER $USER
 
 WORKDIR /home/$USER
-RUN git clone --recurse-submodules https://github.com/alejandrox1/sd2e-cli
+RUN git clone --recurse-submodules $REPO
 
 ENV PATH /home/$USER/sd2e-cli/bin:$PATH
 
