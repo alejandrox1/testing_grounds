@@ -21,4 +21,6 @@ RUN git clone --recurse-submodules https://github.com/alejandrox1/sd2e-cli
 
 ENV PATH /home/docker/sd2e-cli/bin:$PATH
 
+WORKDIR /home/docker/sd2e-cli
+
 CMD ["/bin/bash"]
