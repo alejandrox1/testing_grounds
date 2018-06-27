@@ -15,6 +15,8 @@
 ##      -h|--help print to stdout any help information included in the header
 ##                of the script.
 ##
+##      -b|--build build container image.
+##
 ##      --get-tar downloads sd2e-cli tarball from main repo.
 ##
 set -e
@@ -29,6 +31,7 @@ CONTAINER="sd2e-cli-dev"
 REPO="https://github.com/alejandrox1/sd2e-cli"
 
 # Input parameters
+BUILD_IMAGE="false"
 GET_TAR="false"
 
 # Parse command line arguments.
@@ -43,6 +46,9 @@ while [[ "$#" > 0 ]]; do
         -h|--help)
             echo "$(grep "^##" ${BASH_SOURCE[0]} | cut -c 4-)"
             exit 0
+            ;;
+        -b|--build)
+            BUILD_IMAG="TRUE"
             ;;
         --get-tar)
             GET_TAR="true"
@@ -64,7 +70,19 @@ if [ "${GET_TAR}" == "true" ]; then
 fi
 
 
-echo -e "${red}SD2E-CLI development starting...${reset}"
+if [ "${BUILD_IMAGE}" == "true" ]; then
+    echo -e "${green}Building ${CONTAINER}...${reset}"
+    docker build \
+        --no-cache \
+        --force-rm \
+        --build-arg UID=$UID \
+        --build-arg USER=$USER \
+        --build-arg REPO=$REPO \
+        -t $CONTAINER .
+fi
+
+
+echo -e "${green}SD2E-CLI development starting...${reset}"
 docker build \
     --force-rm \
     --build-arg UID=$UID \
