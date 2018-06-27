@@ -22,14 +22,15 @@ USER $USER
 
 WORKDIR /home/$USER
 
-# Set a cool prompt
+# Set a cool prompt.
 RUN curl -L https://raw.githubusercontent.com/alejandrox1/dev_env/master/local-setup/bash_prompt \
     -o ~/.bash_prompt && \
     echo "source ~/.bash_prompt" >> ~/.bashrc
 
-# Get your repo
+# Get your repo.
 RUN git clone --recurse-submodules $REPO
 
+# COntainer specific commands.
 ENV PATH /home/$USER/sd2e-cli/bin:$PATH
 
 CMD ["/bin/bash"]
