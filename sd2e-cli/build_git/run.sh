@@ -24,6 +24,10 @@ export green="\e[32m"
 export red="\e[1;31m"
 export reset="\e[0m"
 
+# Parameters
+CONTAINER="sd2e-cli-dev"
+REPO="https://github.com/alejandrox1/sd2e-cli"
+
 # Input parameters
 GET_TAR="false"
 
@@ -61,10 +65,13 @@ fi
 
 
 echo -e "${red}SD2E-CLI development starting...${reset}"
-docker build --force-rm \
-    --build-arg UID=$UID --build-arg USER=$USER \
-    -t sd2e-cli-dev . && \
+docker build --no-cache --force-rm \
+    --build-arg UID=$UID \
+    --build-arg USER=$USER \
+    --build-arg REPO=$REPO \
+    -t $CONTAINER . && \
     docker run \
     -v ~/.gitconfig:/home/$USER/.gitconfig \
     -v ~/.git-credentials:/home/$USER/.git-credentials \
-    --rm -it sd2e-cli-dev
+    -w /home/$USER/$(basename $REPO) \
+    --rm -it $CONTAINER
