@@ -11,13 +11,16 @@ ARG USER=docker
 ARG REPO=https://github.com/alejandrox1/sd2e-cli
 
 RUN apt-get update -y && apt-get install -y git build-essential \
-    vim bash-completion curl
+    vim bash-completion curl sudo
     # Commenting these out in order to have the system updated - may need to
     # install something during an interactive run
     #rm -rf /var/lib/apt/lists/* && \
     #rm -rf /src/.*deb
 
-RUN useradd -u $UID -ms /bin/bash $USER
+# Passwordless sudo.
+#RUN useradd -u $UID -ms /bin/bash -G sudo $USER && echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+# Sudo with password.
+RUN useradd -u $UID -ms /bin/bash -G sudo $USER && echo "$USER:docker" | chpasswd
 USER $USER
 
 WORKDIR /home/$USER
