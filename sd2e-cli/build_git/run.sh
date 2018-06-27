@@ -86,5 +86,6 @@ echo -e "${green}Starting ${CONTAINER}...${reset}"
 docker run \
     -v ~/.gitconfig:/home/$USER/.gitconfig:rw \
     -v ~/.git-credentials:/home/$USER/.git-credentials:rw \
+    -v $PWD/sd2e_files:/home/$USER/sd2e_files \
     -w /home/$USER/$(basename $REPO) \
     --rm -it $CONTAINER
