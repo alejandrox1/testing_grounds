@@ -27,10 +27,12 @@ USER $USER
 
 WORKDIR /home/$USER
 
-# Set a cool prompt.
+# Set a cool prompt and vimrc.
 RUN curl -L https://raw.githubusercontent.com/alejandrox1/dev_env/master/local-setup/bash_prompt \
     -o ~/.bash_prompt && \
-    echo "source ~/.bash_prompt" >> ~/.bashrc
+    echo "source ~/.bash_prompt" >> ~/.bashrc && \
+    curl -L https://raw.githubusercontent.com/alejandrox1/dev_env/master/local-setup/vimrc \
+    -o ~/.vimrc
 
 # Get your repo.
 RUN git clone --recurse-submodules $REPO $REPO_LOC && \
