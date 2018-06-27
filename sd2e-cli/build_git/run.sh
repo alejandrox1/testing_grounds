@@ -65,13 +65,14 @@ fi
 
 
 echo -e "${red}SD2E-CLI development starting...${reset}"
-docker build --no-cache --force-rm \
+docker build \
+    --force-rm \
     --build-arg UID=$UID \
     --build-arg USER=$USER \
     --build-arg REPO=$REPO \
     -t $CONTAINER . && \
     docker run \
-    -v ~/.gitconfig:/home/$USER/.gitconfig \
-    -v ~/.git-credentials:/home/$USER/.git-credentials \
+    -v ~/.gitconfig:/home/$USER/.gitconfig:rw \
+    -v ~/.git-credentials:/home/$USER/.git-credentials:rw \
     -w /home/$USER/$(basename $REPO) \
     --rm -it $CONTAINER
