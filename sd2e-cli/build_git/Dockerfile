@@ -6,8 +6,6 @@
 FROM ubuntu:18.04
 MAINTAINER alejandrox1
 
-ARG BRANCH=master
-
 RUN apt-get update -y && apt-get install -y git build-essential  && \
     apt-get install -y vim
     # Commenting these out in order to have the system updated - may need to
@@ -19,7 +17,7 @@ RUN useradd -ms /bin/bash docker
 USER docker
 
 WORKDIR /home/docker
-RUN git clone -b ${BRANCH} https://github.com/alejandrox1/sd2e-cli
+RUN git clone --recurse-submodules https://github.com/alejandrox1/sd2e-cli
 
 ENV PATH /home/docker/sd2e-cli/bin:$PATH
 
