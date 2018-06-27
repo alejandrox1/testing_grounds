@@ -1,3 +1,6 @@
+# SD2E
+sd2e-cli/build_git/sd2e_files/*
+
 # Ignore swp files
 *.swp
 
