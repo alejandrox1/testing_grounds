@@ -61,6 +61,5 @@ fi
 
 
 echo -e "${red}Building with the ${SD2E_BRANCH} branch...${reset}"
-
-docker build --no-cache --force-rm --build-arg BRANCH=${SD2E_BRANCH} -t sd2e-cli . && \
-    docker run -it sd2e-cli
+docker build --no-cache --force-rm -t sd2e-cli-dev . && \
+    docker run -it sd2e-cli-dev
