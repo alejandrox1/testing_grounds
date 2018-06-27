@@ -60,6 +60,9 @@ if [ "${GET_TAR}" == "true" ]; then
 fi
 
 
-echo -e "${red}Building with the ${SD2E_BRANCH} branch...${reset}"
-docker build --no-cache --force-rm -t sd2e-cli-dev . && \
-    docker run -it sd2e-cli-dev
+echo -e "${red}SD2E-CLI development starting...${reset}"
+docker build --force-rm -t sd2e-cli-dev . && \
+    docker run \
+    -v ~/.gitconfig:/home/docker/.gitconfig:ro \
+    -v ~/.git-credentials:/home/docker/.git-credentials:ro \
+    -it sd2e-cli-dev
