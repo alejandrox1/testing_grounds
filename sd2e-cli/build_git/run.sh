@@ -82,14 +82,8 @@ if [ "${BUILD_IMAGE}" == "true" ]; then
 fi
 
 
-echo -e "${green}SD2E-CLI development starting...${reset}"
-docker build \
-    --force-rm \
-    --build-arg UID=$UID \
-    --build-arg USER=$USER \
-    --build-arg REPO=$REPO \
-    -t $CONTAINER . && \
-    docker run \
+echo -e "${green}Starting ${CONTAINER}...${reset}"
+docker run \
     -v ~/.gitconfig:/home/$USER/.gitconfig:rw \
     -v ~/.git-credentials:/home/$USER/.git-credentials:rw \
     -w /home/$USER/$(basename $REPO) \
