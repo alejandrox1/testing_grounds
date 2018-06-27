@@ -15,10 +15,6 @@
 ##      -h|--help print to stdout any help information included in the header
 ##                of the script.
 ##
-##      -b|--branch clone the development branch. CUrrently, the development 
-##                  branch in the github.com/alejandrox1/sd2e-cli is the 
-##                  v1.0.7_alejandrox1 branch.
-##
 ##      --get-tar downloads sd2e-cli tarball from main repo.
 ##
 set -e
@@ -29,8 +25,6 @@ export red="\e[1;31m"
 export reset="\e[0m"
 
 # Input parameters
-SD2E_BRANCH="master"
-#SD2E_BRANCH="v1.0.7_alejandrox1"
 GET_TAR="false"
 
 # Parse command line arguments.
@@ -45,9 +39,6 @@ while [[ "$#" > 0 ]]; do
         -h|--help)
             echo "$(grep "^##" ${BASH_SOURCE[0]} | cut -c 4-)"
             exit 0
-            ;;
-        -b|--branch)
-            SD2E_BRANCH="v1.0.7_alejandrox1"
             ;;
         --get-tar)
             GET_TAR="true"
