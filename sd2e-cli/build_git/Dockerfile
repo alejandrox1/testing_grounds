@@ -13,7 +13,8 @@ ARG REPO_LOC=sd2e-cli
 ARG UPSTREAM=https://github.com/SD2E/sd2e-cli
 
 RUN apt-get update -y && apt-get install -y git build-essential \
-    vim bash-completion curl sudo
+    vim bash-completion curl sudo \
+    rsync
     # Commenting these out in order to have the system updated - may need to
     # install something during an interactive run
     #rm -rf /var/lib/apt/lists/* && \
