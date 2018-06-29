@@ -11,7 +11,7 @@ ARG REPO=https://github.com/alejandrox1/agave-cli
 ARG REPO_LOC=agave-cli
 ARG UPSTREAM=https://github.com/TACC-Cloud/agave-cli
 
-RUN apt-get update -y && pip install virtualenv 
+RUN apt-get update -y && apt-get install -y bats && pip install virtualenv 
     # Commenting these out in order to have the system updated - may need to
     # install something during an interactive run
     #rm -rf /var/lib/apt/lists/* && \
