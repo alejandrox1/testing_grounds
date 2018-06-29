@@ -2,7 +2,7 @@
 #
 # Install agave-cli from source.
 #
-FROM alejandrox1/ubuntu18_miniconda3-dev
+FROM alejandrox1/ubuntu18_python-dev
 MAINTAINER alejandrox1
 
 ARG UID=1000
