@@ -17,7 +17,11 @@ RUN apt-get update -y && pip install virtualenv
     #rm -rf /var/lib/apt/lists/* && \
     #rm -rf /src/.*deb
 
-# Agave-cli dependencies!
+###############################################################################
+#                                                                             #
+#                          Agave-cli dependencies!                            #
+#                                                                             #
+###############################################################################
 RUN apt-get install -y bats jq
 
 # Passwordless sudo.
