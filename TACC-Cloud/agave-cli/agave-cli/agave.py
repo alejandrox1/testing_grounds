@@ -28,16 +28,18 @@ subparsers = parser.add_subparsers()
 
 hello_parser = subparsers.add_parser("hello")
 hello_parser.add_argument("name", help="name of person to greet")
-hello_parser.add_argument("--greeting", default="Hello", help="greeting to use")
 hello_parser.add_argument(
-    "--caps", action="store_true", help="uppercase output")
+    "-g", "--greeting", default="Hello", help="greeting to use")
+hello_parser.add_argument(
+    "-c", "--caps", action="store_true", help="uppercase output")
 hello_parser.set_defaults(func=greet)
 
 goodbye_parser = subparsers.add_parser("goodbye")
 goodbye_parser.add_argument("name", help="name of person to greet")
-goodbye_parser.add_argument("--greeting", default="Bye", help="greeting to use")
 goodbye_parser.add_argument(
-    "--caps", action="store_true", help="uppercase greeting")
+    "-g", "--greeting", default="Bye", help="greeting to use")
+goodbye_parser.add_argument(
+    "-c", "--caps", action="store_true", help="uppercase greeting")
 goodbye_parser.set_defaults(func=greet)
 
 if __name__ == "__main__":
