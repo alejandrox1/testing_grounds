@@ -5,6 +5,44 @@ from __future__ import print_function
 import requests
 import sys
 
+AGAVE_DB="agave.jsonl"
+
+
+
+def get_tenants(arguments):                                                     
+    """ Get Agave tenants                                                      
+                                                                                
+    Get all Agave tenants for a given Agave host.
+                                                                                
+    PARAMETERS                                                                  
+    ----------                                                                  
+    arguments: object (argparse.Namespace)                                      
+        This object may contain the following attributes:                       
+        - hosturl: string representing a url (optional).                        
+    """                                                                         
+    # Set hosturl.                                                              
+    if not arguments.hosturl:                                                   
+        hosturl = "https://api.tacc.utexas.edu/tenants"                         
+    else:                                                                       
+        hosturl = arguments.hosturl                                             
+                                                                                
+    # Make request.                                                             
+    try:                                                                        
+        resp = requests.get(hosturl)                                            
+    except requests.exceptions.MissingSchema as e:                              
+        print(e, file=sys.stderr)                                               
+        sys.exit(1)                                                             
+                                                                                
+    # Handle Errors.                                                            
+    # Handle bad status code.                                                   
+    if resp.status_code >= 400:                                                 
+        print(                                                                  
+            "Bad GET request to {0}, status code {1}".format(                   
+                hosturl, resp.status_code),                                     
+            file=sys.stderr)                                                    
+        sys.exit(1) 
+    
+    return resp.json()
 
 
 def tenant_init(arguments):
@@ -30,31 +68,11 @@ def tenant_list(arguments):
         This object may contain the following attributes:
         - hosturl: string representing a url (optional).
     """
-    # Set hosturl.
-    if not arguments.hosturl:
-        hosturl = "https://api.tacc.utexas.edu/tenants"
-    else:
-        hosturl = arguments.hosturl
-
-    # Make request.
-    try:
-        resp = requests.get(hosturl)
-    except requests.exceptions.MissingSchema as e:
-        print(e, file=sys.stderr)
-        sys.exit(1)
-
-    # Handle Errors.
-    # Handle bad status code.
-    if resp.status_code >= 400:
-        print(
-            "Bad GET request to {0}, status code {1}".format(
-                hosturl, resp.status_code),
-            file=sys.stderr)
-        sys.exit(1)
-
+    tenants = get_tenants(arguments)
+    
     # Print results.
     print("{0:<20} {1:<40}".format("CODE", "NAME"))
-    for tenant in resp.json()["result"]:
+    for tenant in tenants["result"]:
         print("{0:<20} {1:<40}".format(tenant["code"], tenant["name"]))
 
 
