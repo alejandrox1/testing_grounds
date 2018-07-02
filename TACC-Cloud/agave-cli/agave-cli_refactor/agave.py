@@ -37,8 +37,11 @@ tenant_init_parser = action_subparser.add_parser(
     "init",
     help="Configure the context for a given tenant",
     parents=[parent_parser])
+
 tenant_init_parser.add_argument(
     "tenant_name", help="Name of agave tenant to use")
+
+tenant_init_parser.set_defaults(func=tenants.tenant_init)
 
 # Tenant ls command.
 tenant_ls_parser = action_subparser.add_parser(
