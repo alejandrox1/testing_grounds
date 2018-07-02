@@ -6,13 +6,25 @@ import requests
 import sys
 
 
+
+def tenant_init(arguments):
+    """ Initiate an Agave Tenant 
+
+    PARAMETERS
+    ----------
+    arguments: object (argparse.Namespace)
+    """
+    pass
+
+
+
 def tenants_list(arguments):
     """ List Agave tenants
 
     List all Agave tenants for a given Agave host. Information listed is the
     name and the code of the tenant.
 
-    Parameters
+    PARAMETERS
     ----------
     arguments: object (argparse.Namespace)
         This object may contain the following attributes:
@@ -44,3 +56,19 @@ def tenants_list(arguments):
     print("{0:<20} {1:<40}".format("CODE", "NAME"))
     for tenant in resp.json()["result"]:
         print("{0:<20} {1:<40}".format(tenant["code"], tenant["name"]))
+
+
+
+def tenants_cmd(arguments):
+    """ Tenants Command
+
+    PARAMETERS
+    ----------
+    arguments: object (argparse.Namespace)
+    """
+    if (arguments.init):
+        # Use an agave tenant.
+        tenant_init(arguments)
+    elif (arguments.ls):
+        # List agave tenants.
+        tenants_list(arguments)
