@@ -12,10 +12,11 @@ def tenants_list(arguments):
     Parameters
     ----------
     arguments: object (argparse.Namespace)
+        This object may contain the following attributes:
+        - hosturl: string representing a url (optional).
     """
     if not arguments.hosturl:
         hosturl = "https://api.tacc.utexas.edu/tenants"
-        hosturl = "https://aaaapi.tacc.utexas.edu/tenants"
     else:
         hosturl = arguments.hosturl
 
