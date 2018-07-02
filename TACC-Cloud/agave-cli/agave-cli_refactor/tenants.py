@@ -93,9 +93,8 @@ def tenant_init(arguments):
     # Append current context if contexts array is empty.
     if "tenants" not in agave_context:
         agave_context.setdefault("tenants", []).append(tenant_context)
-    
     # Append current context if it doesn't already exit.
-    if agave_context["current"] not in [ x["tenantid"] for x in agave_context["tenants"] ]:
+    elif agave_context["current"] not in [ x["tenantid"] for x in agave_context["tenants"] ]:
         agave_context["tenants"].append(tenant_context)
 
     # Save data to Agave database.
