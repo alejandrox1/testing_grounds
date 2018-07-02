@@ -52,7 +52,8 @@ def tenant_init(arguments):
     ----------
     arguments: object (argparse.Namespace)
     """
-    pass
+    agave_context = dict()
+
 
 
 
