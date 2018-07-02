@@ -14,9 +14,24 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--version", action="version", version="0.0.1")
 subparsers = parser.add_subparsers()
 
-
-# Tenant command line option.
+###############################################################################
+#                                                                             #
+#                        Tenant Command Line Option                           #
+#                                                                             #
+###############################################################################
 tenant_parser = subparsers.add_parser("tenant")
+
+# tenant init argument.
+tenant_parser.add_argument(
+        "init", help="Configure the context for a given tenant.")
+tenant_parser.add_argument(
+    "-H",
+    "--hosturl",
+    default="https://api.tacc.utexas.edu/tenants",
+    help="URL of Agave central service")
+
+
+# tenant ls argument.
 tenant_parser.add_argument(
     "ls", help="List all available tenants from the Agave central database")
 tenant_parser.add_argument(
@@ -24,10 +39,10 @@ tenant_parser.add_argument(
     "--hosturl",
     default="https://api.tacc.utexas.edu/tenants",
     help="URL of Agave central service")
+
+
+# Tenant entrypoint.
 tenant_parser.set_defaults(func=tenants.tenants_cmd)
-
-
-
 
 
 if __name__ == "__main__":
