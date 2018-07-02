@@ -24,7 +24,8 @@ tenant_parser.add_argument(
     "--hosturl",
     default="https://api.tacc.utexas.edu/tenants",
     help="URL of Agave central service")
-tenant_parser.set_defaults(func=tenants.tenants_list)
+tenant_parser.set_defaults(func=tenants.tenants_cmd)
+
 
 
 
