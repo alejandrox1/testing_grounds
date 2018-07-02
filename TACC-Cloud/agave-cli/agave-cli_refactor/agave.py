@@ -8,39 +8,49 @@ import argparse
 import sys
 import tenants
 
-
 # Parser and subparsers definition.
-parser = argparse.ArgumentParser()
-parser.add_argument("--version", action="version", version="0.0.1")
-subparsers = parser.add_subparsers()
+parent_parser = argparse.ArgumentParser(add_help=False)
+parent_parser.add_argument(
+    "-H",
+    "--hosturl",
+    default="https://api.tacc.utexas.edu/tenants",
+    help="URL of Agave central service")
+
+main_parser = argparse.ArgumentParser()
+
+commands_subparsers = main_parser.add_subparsers(
+    title="Commands", dest="commands_cmd")
 
 ###############################################################################
 #                                                                             #
 #                        Tenant Command Line Option                           #
 #                                                                             #
 ###############################################################################
-tenant_parser = subparsers.add_parser("tenant")
+command_parser = commands_subparsers.add_parser(
+    "tenant", help="Manage Agave tenants", parents=[parent_parser])
 
-tenant_parser.add_argument(                                                     
-    "-H",                                                                       
-    "--hosturl",                                                                
-    default="https://api.tacc.utexas.edu/tenants",                              
-    help="URL of Agave central service")
+action_subparser = command_parser.add_subparsers(
+    title="action", dest="action_cmd")
 
-# tenant init argument.
-tenant_parser.add_argument(
-        "tenant_name", help="Configure the context for a given tenant.")
+# Tenant init command.
+tenant_init_parser = action_subparser.add_parser(
+    "init",
+    help="Configure the context for a given tenant",
+    parents=[parent_parser])
+tenant_init_parser.add_argument(
+    "tenant_name", help="Name of agave tenant to use")
 
-# tenant ls argument.
-tenant_parser.add_argument(
-    "ls", help="List all available tenants from the Agave central database")
+# Tenant ls command.
+tenant_ls_parser = action_subparser.add_parser(
+    "ls",
+    help="List all available tenants from the Agave central database",
+    parents=[parent_parser])
+tenant_ls_parser.set_defaults(func=tenants.tenant_list)
 
-# Tenant entrypoint.
-tenant_parser.set_defaults(func=tenants.tenants_cmd)
 
 
 if __name__ == "__main__":
-    args = parser.parse_args()
+    args = main_parser.parse_args()
 
     if len(sys.argv) == 1:
         parser.print_help()
