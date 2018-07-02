@@ -21,25 +21,19 @@ subparsers = parser.add_subparsers()
 ###############################################################################
 tenant_parser = subparsers.add_parser("tenant")
 
-# tenant init argument.
-tenant_parser.add_argument(
-        "init", help="Configure the context for a given tenant.")
-tenant_parser.add_argument(
-    "-H",
-    "--hosturl",
-    default="https://api.tacc.utexas.edu/tenants",
+tenant_parser.add_argument(                                                     
+    "-H",                                                                       
+    "--hosturl",                                                                
+    default="https://api.tacc.utexas.edu/tenants",                              
     help="URL of Agave central service")
 
+# tenant init argument.
+tenant_parser.add_argument(
+        "tenant_name", help="Configure the context for a given tenant.")
 
 # tenant ls argument.
 tenant_parser.add_argument(
     "ls", help="List all available tenants from the Agave central database")
-tenant_parser.add_argument(
-    "-H",
-    "--hosturl",
-    default="https://api.tacc.utexas.edu/tenants",
-    help="URL of Agave central service")
-
 
 # Tenant entrypoint.
 tenant_parser.set_defaults(func=tenants.tenants_cmd)
