@@ -1,60 +1,55 @@
-""" 
+"""
     tenants.py
 """
 from __future__ import print_function
-import requests
 import sys
+import requests
 
-AGAVE_DB="agave.jsonl"
+AGAVE_DB = "agave.jsonl"
 
 
+def get_tenants(hosturl):
+    """ Get Agave tenants
 
-def get_tenants(arguments):                                                     
-    """ Get Agave tenants                                                      
-                                                                                
     Get all Agave tenants for a given Agave host.
-                                                                                
-    PARAMETERS                                                                  
-    ----------                                                                  
-    arguments: object (argparse.Namespace)                                      
-        This object may contain the following attributes:                       
-        - hosturl: string representing a url (optional).                        
-    """                                                                         
-    # Set hosturl.                                                              
-    if not arguments.hosturl:                                                   
-        hosturl = "https://api.tacc.utexas.edu/tenants"                         
-    else:                                                                       
-        hosturl = arguments.hosturl                                             
-                                                                                
-    # Make request.                                                             
-    try:                                                                        
-        resp = requests.get(hosturl)                                            
-    except requests.exceptions.MissingSchema as e:                              
-        print(e, file=sys.stderr)                                               
-        sys.exit(1)                                                             
-                                                                                
-    # Handle Errors.                                                            
-    # Handle bad status code.                                                   
-    if resp.status_code >= 400:                                                 
-        print(                                                                  
-            "Bad GET request to {0}, status code {1}".format(                   
-                hosturl, resp.status_code),                                     
-            file=sys.stderr)                                                    
-        sys.exit(1) 
-    
+
+    PARAMETERS
+    ----------
+    hosturl: string
+        URL to send GET request to. This resource should list all Agave
+        tenants.
+    """
+    # Make request.
+    try:
+        resp = requests.get(hosturl)
+    except requests.exceptions.MissingSchema as err:
+        print(err, file=sys.stderr)
+        sys.exit(1)
+
+    # Handle bad status code.
+    if resp.status_code >= 400:
+        print(
+            "Bad GET request to {0}, status code {1}".format(
+                hosturl, resp.status_code),
+            file=sys.stderr)
+        sys.exit(1)
+
     return resp.json()
 
 
 def tenant_init(arguments):
-    """ Initiate an Agave Tenant 
+    """ Initiate an Agave Tenant
 
     PARAMETERS
     ----------
     arguments: object (argparse.Namespace)
     """
-    agave_context = dict()
+    # Get a json of all AGave tenants.
+    tenants = get_tenants(arguments)
 
+    tenant_context = dict()
 
+    #if arguments. in [ x["code"] for x in resp.json()["result"] ]
 
 
 def tenant_list(arguments):
@@ -69,25 +64,10 @@ def tenant_list(arguments):
         This object may contain the following attributes:
         - hosturl: string representing a url (optional).
     """
-    tenants = get_tenants(arguments)
-    
+    # Get a json of all AGave tenants.
+    tenants = get_tenants(arguments.hosturl)
+
     # Print results.
     print("{0:<20} {1:<40}".format("CODE", "NAME"))
     for tenant in tenants["result"]:
         print("{0:<20} {1:<40}".format(tenant["code"], tenant["name"]))
-
-
-
-def tenants_cmd(arguments):
-    """ Tenants Command
-
-    PARAMETERS
-    ----------
-    arguments: object (argparse.Namespace)
-    """
-    if (arguments.init):
-        # Use an agave tenant.
-        tenant_init(arguments)
-    elif (arguments.ls):
-        # List agave tenants.
-        tenant_list(arguments)
