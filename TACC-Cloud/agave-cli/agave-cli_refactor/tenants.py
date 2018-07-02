@@ -18,7 +18,7 @@ def tenant_init(arguments):
 
 
 
-def tenants_list(arguments):
+def tenant_list(arguments):
     """ List Agave tenants
 
     List all Agave tenants for a given Agave host. Information listed is the
@@ -71,4 +71,4 @@ def tenants_cmd(arguments):
         tenant_init(arguments)
     elif (arguments.ls):
         # List agave tenants.
-        tenants_list(arguments)
+        tenant_list(arguments)
