@@ -15,6 +15,7 @@ def tenants_list(arguments):
         This object may contain the following attributes:
         - hosturl: string representing a url (optional).
     """
+    # Set hosturl.
     if not arguments.hosturl:
         hosturl = "https://api.tacc.utexas.edu/tenants"
     else:
@@ -36,6 +37,7 @@ def tenants_list(arguments):
             file=sys.stderr)
         sys.exit(1)
 
+    # Print results.
     print("{0:<20} {1:<40}".format("CODE", "NAME"))
     for tenant in resp.json()["result"]:
         print("{0:<20} {1:<40}".format(tenant["code"], tenant["name"]))
