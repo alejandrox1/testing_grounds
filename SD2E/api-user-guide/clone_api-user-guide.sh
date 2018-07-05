@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env bash
 
 git clone https://github.com/alejandrox1/api-user-guide
 
