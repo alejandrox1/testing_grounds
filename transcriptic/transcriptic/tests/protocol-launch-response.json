@@ -1,0 +1,73 @@
+{
+  "id": "lr18wrhb23k54vk",
+  "user_id": "u16r234n2393m",
+  "protocol_id": "pr18v9bpcsjn4p",
+  "inputs": {
+    "refs": {
+      "o397_10uM": {
+        "id": "ctl84ud9p7se2ug",
+        "label": "plasmid_dna",
+        "type": "micro-1.5",
+        "store": "cold_20",
+        "cover": null,
+        "aliquots": {
+          "0": {
+            "name": "plasmid_dna",
+            "volume": "94.8:microliter",
+            "properties": {
+              "Concentration": "10.00uM",
+              "Sequence": "actcgactagatcaggatcagagctagcatcgatcagct"
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "reaction_setup": {
+        "total_reaction_volume": "20:microliter",
+        "ligase_type": "thermo",
+        "ligase_vol": "1:microliter",
+        "gel": true
+      },
+      "reactions": [
+        {
+          "fragments": [
+            {
+              "fragment": "plasmid_dna/0",
+              "volume": "3:microliter"
+            }
+          ]
+        }
+      ],
+      "lig": [
+        {
+          "cycles": 1,
+          "steps": [
+            {
+              "temperature": "22:celsius",
+              "duration": "30:minute"
+            }
+          ]
+        }
+      ],
+      "deact": [
+        {
+          "cycles": 1,
+          "steps": [
+            {
+              "temperature": "65:celsius",
+              "duration": "10:minute"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "autoprotocol": null,
+  "generation_errors": [],
+  "progress": 0,
+  "created_at": "2016-04-21T17:20:44.839-07:00",
+  "updated_at": "2016-04-21T17:20:44.839-07:00",
+  "validated_at": null,
+  "test_mode": false
+}
