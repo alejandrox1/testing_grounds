@@ -1,0 +1,3 @@
+{
+  "tests/test_todos.py::test_getting_todos_when_response_is_not_ok": true
+}
