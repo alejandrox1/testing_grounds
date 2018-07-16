@@ -6,3 +6,4 @@ tests:
 clean:
 	rm -rf transcriptic/__pycache__/
 	rm -rf tests/__pycache__/
+	rm -rf .cache/
