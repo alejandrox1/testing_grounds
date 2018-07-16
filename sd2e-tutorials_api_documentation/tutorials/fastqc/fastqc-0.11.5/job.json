@@ -3,6 +3,6 @@
   "appId": "fastqc-jochoa-0.11.5",
   "archive": false,
   "input": {
-      "fastq": "agave://data-tacc-work-username/sd2e-data/sample/SP1.fq"
+      "fastq": "agave://tacc-globalfs-jochoa/sd2e-data/sample/SP1.fq"
   }
 }
