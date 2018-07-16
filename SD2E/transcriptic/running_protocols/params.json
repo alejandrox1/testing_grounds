@@ -1,0 +1,14 @@
+{
+  "parameters": {
+    "items": [
+      {
+        "name": "10X TBS with 0.5 Tween 20.",
+        "cont_type": "micro-1.5",
+        "res_id": "rs19ktpq4z7teg",
+        "vol": "100:microliter",
+        "dead_vol": false,
+        "storage_condition": "cold_20"
+      }
+    ]
+  }
+}
